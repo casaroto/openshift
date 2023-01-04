@@ -1,0 +1,105 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pvc-2
+  annotations:
+    pv.kubernetes.io/bound-by-controller: 'yes'
+    pv.kubernetes.io/provisioned-by: openshift-storage.rbd.csi.ceph.com
+  finalizers:
+    - kubernetes.io/pv-protection
+  managedFields:
+    - manager: csi-provisioner
+      operation: Update
+      apiVersion: v1
+      time: '2022-12-15T16:55:36Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:csi':
+            'f:nodeStageSecretRef':
+              .: {}
+              'f:name': {}
+              'f:namespace': {}
+            'f:volumeAttributes':
+              'f:clusterID': {}
+              'f:imageFeatures': {}
+              .: {}
+              'f:storage.kubernetes.io/csiProvisionerIdentity': {}
+              'f:pool': {}
+              'f:imageName': {}
+              'f:radosNamespace': {}
+              'f:imageFormat': {}
+              'f:journalPool': {}
+    - manager: Mozilla
+      operation: Update
+      apiVersion: v1
+      time: '2022-12-15T22:08:14Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:pv.kubernetes.io/provisioned-by': {}
+          'f:finalizers':
+            .: {}
+            'v:"kubernetes.io/pv-protection"': {}
+        'f:spec':
+          'f:accessModes': {}
+          'f:capacity':
+            .: {}
+            'f:storage': {}
+          'f:csi':
+            .: {}
+            'f:driver': {}
+            'f:volumeHandle': {}
+          'f:persistentVolumeReclaimPolicy': {}
+          'f:storageClassName': {}
+          'f:volumeMode': {}
+    - manager: ocs-operator
+      operation: Update
+      apiVersion: v1
+      time: '2022-12-15T22:08:14Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:csi':
+            'f:controllerExpandSecretRef':
+              .: {}
+              'f:name': {}
+              'f:namespace': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2022-12-15T22:08:53Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:pv.kubernetes.io/bound-by-controller': {}
+        'f:spec':
+          'f:claimRef':
+            .: {}
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:name': {}
+            'f:namespace': {}
+            'f:resourceVersion': {}
+            'f:uid': {}
+        'f:status':
+          'f:phase': {}
+spec:
+  capacity:
+    storage: 25Gi
+  csi:
+    driver: openshift-storage.rbd.csi.ceph.com
+    volumeHandle: >-
+      0001-0011-openshift-storage-0000000000000001-4bd1cae3-7c99-11ed-9bc4-0a580a800209  
+    controllerExpandSecretRef:
+      name: rook-csi-rbd-provisioner
+      namespace: openshift-storage
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: ocs-storagecluster-ceph-rbd
+  volumeMode: Block
+
